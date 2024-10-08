@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points and Date Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #333;
+            color: #ffffff;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            /* Green color */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            /* Slightly darker green on hover */
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Points and Date Calculator</h1>
+        <input type="number" id="currentPoints" placeholder="Enter current points" min="0">
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const DailyPoints = 155;
+            const target = 7840;
+            let current = parseInt(document.getElementById("currentPoints").value);
+            let i = 0, StreakCount = 1;
+
+            if (isNaN(current) || current <= 0) {
+                document.getElementById("result").innerHTML = "Please enter a valid number.";
+                return;
+            }
+
+            // Calculating points
+            while (current <= target) {
+                i++;
+                current += DailyPoints;
+                if (i % 7 === 0) {
+                    StreakCount++;
+                    current += 100;
+                }
+                if (StreakCount === 12) current += 1000;
+            }
+
+            // Date calculation
+            let today = new Date();
+            today.setDate(today.getDate() + i);
+
+            let finalPoints = current;
+            let finalDate = today.toLocaleDateString('en-GB'); // Format dd-mm-yyyy
+
+            document.getElementById("result").innerHTML = `
+            <p>Final points: ${finalPoints}</p>
+            <p>Date after ${i} days: ${finalDate}</p>
+        `;
+        }
+    </script>
+
+</body>
+
+</html>
