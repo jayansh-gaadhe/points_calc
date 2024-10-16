@@ -10,7 +10,22 @@
 
 <div class="container">
     <h1>Points and Date Calculator</h1>
+    
+    <label for="currentPoints">Enter current points:</label>
     <input type="number" id="currentPoints" placeholder="Enter current points" min="0">
+    
+    <label for="streakDays">Enter number of streak days:</label>
+    <input type="number" id="streakDays" placeholder="Enter number of streak days" min="0">
+
+    <div class="smart-switch">
+        <span id="level1Label" class="level-label level1-active">Level 1</span> <!-- Default level is Level 1 -->
+        <label class="switch">
+            <input type="checkbox" id="levelToggle">
+            <span class="slider"></span>
+        </label>
+        <span id="level2Label" class="level-label">Level 2</span> <!-- Default level is not active -->
+    </div>
+    
     <button id="calculateButton">Calculate</button>
     <div class="result" id="result"></div>
 </div>
