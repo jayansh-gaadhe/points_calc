@@ -122,7 +122,7 @@ button:hover {
 }
 
 input:checked + .slider {
-    background-color: #ccc; /* No color change in switch itself */
+    background-color: #ccc; 
 }
 
 input:checked + .slider:before {
