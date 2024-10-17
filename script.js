@@ -37,16 +37,15 @@ function calculate() {
             current += 100;
         }
 
-        if (StreakCount === 12) { // After 12 streaks, add big bonus
+        if (StreakCount === 12) {
             current += 1000;
         }
     }
 
     // Date calculation: Add the number of streak days to the current date
     let today = new Date();
-    today.setDate(today.getDate() + i); // Add the number of days (i) to the current date
+    today.setDate(today.getDate() + i); 
 
-    // Format the final points and date output
     let finalPoints = current;
     let finalDate = today.toLocaleDateString('en-GB'); // Format dd-mm-yyyy
 
